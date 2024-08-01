@@ -8,7 +8,7 @@
         "sourceLocale": "en",
         "locales": {
           "ar": {
-            "translation": "src/locale/messages.ar.json",
+            "translation": "src/locale/messages.ar.xlf",
             "baseHref": "ar/"
           }
         }
@@ -88,12 +88,8 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "angular-i18n:build",
-            "outputPath": "src/locale",
-            "format": "json"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
