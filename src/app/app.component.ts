@@ -13,9 +13,12 @@ export class AppComponent implements OnInit {
   currentLang: string | undefined;
   title = 'angular-i18n';
   constructor(
+    private titleService:Title,
     @Inject(LOCALE_ID) public locale: string,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.titleService.setTitle($localize`${this.title}`);
+  }
   switchLang() {
     location.href = this.locale === 'ar' ? '/en' : '/ar';
   }
