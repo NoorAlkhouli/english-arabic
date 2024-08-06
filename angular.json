@@ -9,7 +9,7 @@
         "locales": {
           "ar": {
             "translation": "src/locale/messages.ar.xlf",
-            "baseHref": ""
+            "baseHref": "/ar/"
           }
         }
       },
@@ -23,7 +23,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "localize": true,
-            "outputPath": "dist/angular-i18n",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js", "@angular/localize/init"],
