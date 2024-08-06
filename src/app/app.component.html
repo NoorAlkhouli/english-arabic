@@ -1,13 +1,19 @@
 <h1 i18n>Hello Noor</h1>
 <h2 i18n>Welcome</h2>
-<img src="assets/image-en.jpg" alt="Image">
-<img [src]="getImagePath('image-en.jpg')" alt="Localized Image">
-
+<!-- 
 <button (click)="switchLang()">
   @if (locale=='en') {<a href="http://localhost:65318/ar">AR</a> } @else {<a
     href="http://localhost:4200/en"
     >EN</a
   >}
-</button>
+</button> -->
 
-<img >
+
+
+
+
+ <li *ngFor="let language of languages;let i=index" >
+    <a  href="/{{language.lang}}/#{{getCurrentRoute()}}"  (click)="changeLanguage(language.lang, $event)">
+        {{language.lang}}
+    </a>
+ </li>

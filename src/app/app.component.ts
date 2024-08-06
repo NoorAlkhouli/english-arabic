@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
@@ -5,33 +6,35 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   currentLang: string | undefined;
   title = 'angular-i18n';
-  constructor(
-    private titleService:Title,
-    @Inject(LOCALE_ID) public locale: string,
-    private route: ActivatedRoute
-  ) {
-    this.titleService.setTitle($localize`${this.title}`);
-  }
-  switchLang() {
-    location.href = this.locale === 'ar' ? '/en' : '/ar';
+
+  languages = [
+    { lang: 'en', name: 'English' },
+    { lang: 'ar', name: 'Arabic' },
+
+    // Add more languages as needed
+  ];
+
+
+  constructor(private router: Router) {}
+
+  // Method to get the current route
+  getCurrentRoute(): string {
+    return this.router.url.split('/')[1] || ''; // Extracts the route after the language prefix
   }
 
-  ngOnInit(): void {
-    // Assuming the language is set as a route parameter
-    this.route.params.subscribe((params) => {
-      this.currentLang = params['lang'] || 'en';
-    });
-  }
-
-  getImagePath(imageName: string): string {
-    return `../../../../Angular/angular-i18n/dist/angular-i18n/browser/${this.currentLang}/assets/${imageName}`;
+  // Method to change the language and redirect
+  changeLanguage(lang: string, event: Event) {
+    event.preventDefault(); // Prevent the default anchor tag behavior
+    const currentRoute = this.getCurrentRoute();
+    const newUrl = `/${lang}${currentRoute ? '/' + currentRoute : ''}`;
+    this.router.navigateByUrl(newUrl);
   }
 }
 

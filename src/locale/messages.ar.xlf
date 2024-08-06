@@ -25,6 +25,8 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
+         <source>Image of <x id="PH" equiv-text="cabinet.name"/></source>
+        <target>صورة <x id="PH" equiv-text="cabinet.name"/></target>
     </body>
   </file>
 </xliff>
